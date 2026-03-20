@@ -1,0 +1,34 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- TV shape -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M27,35h54c2.2,0 4,1.8 4,4v30c0,2.2 -1.8,4 -4,4H27c-2.2,0 -4,-1.8 -4,-4V39C23,36.8 24.8,35 27,35z"/>
+    <!-- Screen -->
+    <path
+        android:fillColor="#90CAF9"
+        android:pathData="M29,38h50v28H29z"/>
+    <!-- Korean flag circle (simplified) -->
+    <path
+        android:fillColor="#C62828"
+        android:pathData="M54,52m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0"
+        android:strokeWidth="0"/>
+    <path
+        android:fillColor="#1565C0"
+        android:pathData="M54,52m-5,0a5,5 0,0 1,10 0"
+        android:strokeWidth="0"/>
+    <!-- Stand -->
+    <path
+        android:fillColor="#BDBDBD"
+        android:pathData="M42,73h24v3H42z"/>
+    <path
+        android:fillColor="#BDBDBD"
+        android:pathData="M48,69h12v4H48z"/>
+    <!-- Play triangle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M51,48l8,4.5 -8,4.5z"/>
+</vector>
