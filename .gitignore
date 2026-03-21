@@ -10,3 +10,11 @@
 .cxx
 local.properties
 /app/build
+*.apk
+*.aab
+*.jks
+*.keystore
+.navigation/
+captures/
+output.json
+*.hprof
