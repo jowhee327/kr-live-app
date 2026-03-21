@@ -13,7 +13,7 @@ class PreferencesManager(context: Context) {
         private const val KEY_CHANNEL_SOURCE_URL = "channel_source_url"
         private const val KEY_CACHED_CHANNELS = "cached_channels"
         const val DEFAULT_SOURCE_URL =
-            "https://vod-app-bucket.s3.ap-northeast-1.amazonaws.com/channels.json"
+            "https://d1g8wyuo4sonlw.cloudfront.net/channels.json"
     }
 
     var channelSourceUrl: String
