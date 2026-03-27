@@ -1,149 +1,85 @@
 {
-  "version": 2,
+  "version": 3,
   "updated": "2026-03-27",
   "channels": [
     {
       "id": "kbs1",
       "name": "KBS1",
-      "category": "综合",
+      "category": "地面波",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs1.png",
       "streams": [
-        {
-          "url": "https://live-th10.myjktv.com:443/watch/live.m3u8?video=kbs1_540&sid=EZ5881Rv73XGA0AECIYF9UX34lt3YBvq6RLJ1voI&secret=e7d5668457a260527ef38656f6b0082e&time=1765891871",
-          "label": "主线路",
-          "priority": 1
-        },
-        {
-          "url": "http://koreatv.dothome.co.kr/kbs1.php",
-          "label": "备用线路",
-          "priority": 2
-        }
+        {"url": "http://mytv.dothome.co.kr/ch/public/1.php", "label": "主线路", "priority": 1},
+        {"url": "http://ye23.vip/z7z8/2021/kbs2020.php?id=1", "label": "备用线路", "priority": 2}
       ]
     },
     {
       "id": "kbs2",
       "name": "KBS2",
-      "category": "综合",
+      "category": "地面波",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs2.png",
       "streams": [
-        {
-          "url": "https://live-th10.myjktv.com:443/watch/live.m3u8?video=kbs2_540&sid=AyMBt8STQi7J8FnSd0PeQSXX6kQBHrmnVJljjl8w&secret=b232cc97122ea9f507475b72065f7562&time=1765891904",
-          "label": "主线路",
-          "priority": 1
-        },
-        {
-          "url": "http://121.156.46.79/live/10141.m3u8?sid=60720",
-          "label": "备用线路",
-          "priority": 2
-        }
+        {"url": "http://ye23.vip/z7z8/2021/kbs2020.php?id=2", "label": "主线路", "priority": 1},
+        {"url": "http://koreatv.dothome.co.kr/kbs2.php", "label": "备用线路", "priority": 2}
       ]
     },
     {
       "id": "kbs_world",
       "name": "KBS World",
-      "category": "综合",
+      "category": "地面波",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs_world.png",
       "streams": [
-        {
-          "url": "http://worldlive.kbs.co.kr/worldtvlive_h.m3u8",
-          "label": "主线路（官方）",
-          "priority": 1
-        },
-        {
-          "url": "http://220.158.149.14:9999/live/TV00000000000000000112@HHZT;LIVE",
-          "label": "备用线路",
-          "priority": 2
-        }
+        {"url": "http://ye23.vip/z7z8/2021/kbs2020.php?id=3", "label": "主线路", "priority": 1},
+        {"url": "http://worldlive.kbs.co.kr/worldtvlive_h.m3u8", "label": "备用线路（官方·限韩国）", "priority": 2}
       ]
     },
     {
       "id": "mbc",
       "name": "MBC",
-      "category": "综合",
+      "category": "地面波",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/mbc.png",
       "streams": [
-        {
-          "url": "https://live-th10.myjktv.com:443/watch/live.m3u8?video=mbc_540&sid=IpaGWtS1yBSO7JUbq1qO5wzVEOxA49k1jXoRVIbD&secret=a359917fe5cd684f8a1b9e21443c4710&time=1765891937",
-          "label": "主线路",
-          "priority": 1
-        },
-        {
-          "url": "http://121.156.46.79/live/10541.m3u8?sid=60720",
-          "label": "备用线路",
-          "priority": 2
-        }
+        {"url": "http://211.33.246.4:32954/cj_live/myStream.sdp/playlist.m3u8", "label": "主线路（MBC忠北 720p）", "priority": 1},
+        {"url": "http://123.254.93.7:1935/tvlive/livestream2/playlist.m3u8", "label": "备用线路（MBC江原）", "priority": 2}
       ]
     },
     {
       "id": "sbs",
       "name": "SBS",
-      "category": "综合",
+      "category": "地面波",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/sbs.png",
       "streams": [
-        {
-          "url": "https://live-th10.myjktv.com:443/watch/live.m3u8?video=sbs_540&sid=nfOYdJXzncD8lRHzh71jjNMMPF1wpIzAUSc7gVY6&secret=8a4fe706f9cd8c91ecf75cf53f77f08f&time=1765891975",
-          "label": "主线路",
-          "priority": 1
-        },
-        {
-          "url": "http://121.156.46.79/live/10551.m3u8?sid=60720",
-          "label": "备用线路",
-          "priority": 2
-        }
+        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/SBSTV.m3u8", "label": "主线路（720p）", "priority": 1},
+        {"url": "https://streaming-a-802.cdn.nextologies.com/SBS_Live_HD/live/SBS_Live_HD_1500k/chunks.m3u8", "label": "备用线路", "priority": 2}
       ]
     },
     {
       "id": "jtbc",
       "name": "JTBC",
-      "category": "综合",
+      "category": "综编",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/jtbc.png",
       "streams": [
-        {
-          "url": "https://live-th10.myjktv.com:443/watch/live.m3u8?video=jtbc_540&sid=kbtxyuPVF37QVO3zGKMNyQSQo063cYeik0Vr0GoS&secret=133ec1aaf7cf7cf8f6aa77e714da7059&time=1765892075",
-          "label": "主线路",
-          "priority": 1
-        },
-        {
-          "url": "http://121.156.46.79/live/10011.m3u8?sid=60720",
-          "label": "备用线路",
-          "priority": 2
-        }
+        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/JTBC.m3u8", "label": "主线路（720p）", "priority": 1},
+        {"url": "http://channelalive.ktcdn.co.kr/chalivepc/_definst_/atv2/playlist.m3u8", "label": "备用线路", "priority": 2}
       ]
     },
     {
       "id": "tvn",
       "name": "tvN",
-      "category": "综合",
+      "category": "综编",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/tvn.png",
       "streams": [
-        {
-          "url": "https://live-th10.myjktv.com:443/watch/live.m3u8?video=tvn_540&sid=VuRBsIqWGAvpGSOVLnYEhrB8COiArn1mmj7ckNV5&secret=a72ec41ef89359f0cd94837d75fa20f9&time=1772755122",
-          "label": "主线路",
-          "priority": 1
-        },
-        {
-          "url": "http://121.156.46.79/live/10051.m3u8?sid=60720",
-          "label": "备用线路",
-          "priority": 2
-        }
+        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/tvN.m3u8", "label": "主线路（720p）", "priority": 1},
+        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/tvNDrama.m3u8", "label": "备用线路（tvN Drama）", "priority": 2}
       ]
     },
     {
       "id": "tv_chosun",
       "name": "TV Chosun",
-      "category": "综合",
+      "category": "综编",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/tv_chosun.png",
       "streams": [
-        {
-          "url": "http://121.156.46.79/live/10041.m3u8?sid=60720",
-          "label": "主线路",
-          "priority": 1
-        },
-        {
-          "url": "http://onair2.cdn.tvchosun.com/origin2/_definst_/tvchosun_s3/playlist.m3u8",
-          "label": "备用线路",
-          "priority": 2
-        }
+        {"url": "http://onair.cdn.tvchosun.com/origin1/_definst_/tvchosun_s1/playlist.m3u8", "label": "主线路（官方CDN 720p）", "priority": 1, "headers": {"Referer": "http://broadcast.tvchosun.com/onair/on.cstv"}},
+        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/TVChosun.m3u8", "label": "备用线路", "priority": 2}
       ]
     }
   ]
