@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "updated": "2026-03-27",
   "tested_from": "中国联通全国44节点 via itdog.cn",
   "channels": [
@@ -9,8 +9,16 @@
       "category": "地面波",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs1.png",
       "streams": [
-        {"url": "http://mytv.dothome.co.kr/ch/public/1.php", "label": "主线路（联通98%✓）", "priority": 1},
-        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/SBSTV.m3u8", "label": "备用·SBS代播", "priority": 2}
+        {
+          "url": "https://dfsljzccfc52gszns45eeg4igu0jsjft.lambda-url.ap-northeast-2.on.aws/kbs1",
+          "label": "主线路·Seoul代理（需VPN/韩网）",
+          "priority": 1
+        },
+        {
+          "url": "http://mytv.dothome.co.kr/ch/public/1.php",
+          "label": "备用·dothome代理",
+          "priority": 2
+        }
       ]
     },
     {
@@ -19,8 +27,16 @@
       "category": "地面波",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs2.png",
       "streams": [
-        {"url": "http://mytv.dothome.co.kr/ch/public/3.php", "label": "主线路（dothome代理）", "priority": 1},
-        {"url": "http://mytv.dothome.co.kr/ch/public/1.php", "label": "备用·KBS1", "priority": 2}
+        {
+          "url": "https://dfsljzccfc52gszns45eeg4igu0jsjft.lambda-url.ap-northeast-2.on.aws/kbs2",
+          "label": "主线路·Seoul代理（需VPN/韩网）",
+          "priority": 1
+        },
+        {
+          "url": "http://mytv.dothome.co.kr/ch/public/3.php",
+          "label": "备用·dothome代理",
+          "priority": 2
+        }
       ]
     },
     {
@@ -29,8 +45,11 @@
       "category": "地面波",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs_world.png",
       "streams": [
-        {"url": "http://worldlive.kbs.co.kr/worldtvlive_h.m3u8", "label": "主线路（官方·限韩国）", "priority": 1},
-        {"url": "http://mytv.dothome.co.kr/ch/public/1.php", "label": "备用·KBS1", "priority": 2}
+        {
+          "url": "http://worldlive.kbs.co.kr/worldtvlive_h.m3u8",
+          "label": "主线路·官方（需韩国网络）",
+          "priority": 1
+        }
       ]
     },
     {
@@ -39,8 +58,16 @@
       "category": "地面波",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/mbc.png",
       "streams": [
-        {"url": "http://211.33.246.4:32954/cj_live/myStream.sdp/playlist.m3u8", "label": "主线路·MBC忠北720p（联通100%✓）", "priority": 1},
-        {"url": "https://ns1.tjmbc.co.kr/live/myStream.sdp/playlist.m3u8", "label": "备用·MBC大田（联通100%✓）", "priority": 2}
+        {
+          "url": "http://211.33.246.4:32954/cj_live/myStream.sdp/playlist.m3u8",
+          "label": "主线路·MBC忠北720p（联通100%✓）",
+          "priority": 1
+        },
+        {
+          "url": "https://ns1.tjmbc.co.kr/live/myStream.sdp/playlist.m3u8",
+          "label": "备用·MBC大田（联通100%✓）",
+          "priority": 2
+        }
       ]
     },
     {
@@ -49,7 +76,11 @@
       "category": "地面波",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/sbs.png",
       "streams": [
-        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/SBSTV.m3u8", "label": "主线路720p（联通98%✓）", "priority": 1}
+        {
+          "url": "https://allanf181.github.io/adaptive-streams/streams/kr/SBSTV.m3u8",
+          "label": "主线路720p（联通98%✓）",
+          "priority": 1
+        }
       ]
     },
     {
@@ -58,7 +89,11 @@
       "category": "综编",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/jtbc.png",
       "streams": [
-        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/JTBC.m3u8", "label": "主线路720p（联通100%✓）", "priority": 1}
+        {
+          "url": "https://allanf181.github.io/adaptive-streams/streams/kr/JTBC.m3u8",
+          "label": "主线路720p（联通100%✓）",
+          "priority": 1
+        }
       ]
     },
     {
@@ -67,7 +102,11 @@
       "category": "综编",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/tvn.png",
       "streams": [
-        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/tvN.m3u8", "label": "主线路720p（联通100%✓）", "priority": 1}
+        {
+          "url": "https://allanf181.github.io/adaptive-streams/streams/kr/tvN.m3u8",
+          "label": "主线路720p（联通100%✓）",
+          "priority": 1
+        }
       ]
     },
     {
@@ -76,8 +115,16 @@
       "category": "综编",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/tv_chosun.png",
       "streams": [
-        {"url": "http://onair.cdn.tvchosun.com/origin1/_definst_/tvchosun_s1/playlist.m3u8", "label": "主线路·官方CDN 720p（联通98%✓）", "priority": 1},
-        {"url": "http://onair2.cdn.tvchosun.com/origin2/_definst_/tvchosun_s3/playlist.m3u8", "label": "备用·官方CDN2（联通95%✓）", "priority": 2}
+        {
+          "url": "http://onair.cdn.tvchosun.com/origin1/_definst_/tvchosun_s1/playlist.m3u8",
+          "label": "主线路·官方CDN 720p（联通98%✓）",
+          "priority": 1
+        },
+        {
+          "url": "http://onair2.cdn.tvchosun.com/origin2/_definst_/tvchosun_s3/playlist.m3u8",
+          "label": "备用·官方CDN2（联通95%✓）",
+          "priority": 2
+        }
       ]
     }
   ]
