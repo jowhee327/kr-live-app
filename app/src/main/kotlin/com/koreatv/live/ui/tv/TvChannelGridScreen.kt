@@ -200,20 +200,20 @@ private fun TvChannelCard(
 
     val cardScale by animateFloatAsState(
         targetValue = if (isFocused) 1.1f else 1.0f,
-        animationSpec = tween(durationMillis = 250),
+        animationSpec = tween(durationMillis = 300),
         label = "tvCardScale"
     )
 
     val cardElevation by animateDpAsState(
-        targetValue = if (isFocused) 16.dp else 2.dp,
-        animationSpec = tween(durationMillis = 250),
+        targetValue = if (isFocused) 12.dp else 4.dp,
+        animationSpec = tween(durationMillis = 300),
         label = "tvCardElevation"
     )
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(160.dp)
+            .height(180.dp)
             .scale(cardScale)
             .onFocusChanged { isFocused = it.isFocused }
             .focusable()
@@ -260,7 +260,7 @@ private fun TvChannelCard(
         ) {
             Box(
                 modifier = Modifier
-                    .size(56.dp)
+                    .size(80.dp)
                     .clip(CircleShape)
                     .background(Color(0xFF2A2A2A)),
                 contentAlignment = Alignment.Center
@@ -269,8 +269,8 @@ private fun TvChannelCard(
                     AsyncImage(
                         model = channel.logo,
                         contentDescription = channel.name,
-                        modifier = Modifier.size(56.dp).clip(CircleShape),
-                        contentScale = ContentScale.Crop
+                        modifier = Modifier.size(80.dp).clip(CircleShape),
+                        contentScale = ContentScale.Fit
                     )
                 } else {
                     Text(
