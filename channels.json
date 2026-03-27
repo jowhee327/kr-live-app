@@ -1,6 +1,7 @@
 {
-  "version": 3,
+  "version": 4,
   "updated": "2026-03-27",
+  "tested_from": "中国联通全国节点 via itdog.cn",
   "channels": [
     {
       "id": "kbs1",
@@ -8,28 +9,7 @@
       "category": "地面波",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs1.png",
       "streams": [
-        {"url": "http://mytv.dothome.co.kr/ch/public/1.php", "label": "主线路", "priority": 1},
-        {"url": "http://ye23.vip/z7z8/2021/kbs2020.php?id=1", "label": "备用线路", "priority": 2}
-      ]
-    },
-    {
-      "id": "kbs2",
-      "name": "KBS2",
-      "category": "地面波",
-      "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs2.png",
-      "streams": [
-        {"url": "http://ye23.vip/z7z8/2021/kbs2020.php?id=2", "label": "主线路", "priority": 1},
-        {"url": "http://koreatv.dothome.co.kr/kbs2.php", "label": "备用线路", "priority": 2}
-      ]
-    },
-    {
-      "id": "kbs_world",
-      "name": "KBS World",
-      "category": "地面波",
-      "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs_world.png",
-      "streams": [
-        {"url": "http://ye23.vip/z7z8/2021/kbs2020.php?id=3", "label": "主线路", "priority": 1},
-        {"url": "http://worldlive.kbs.co.kr/worldtvlive_h.m3u8", "label": "备用线路（官方·限韩国）", "priority": 2}
+        {"url": "http://mytv.dothome.co.kr/ch/public/1.php", "label": "主线路（联通98%✓）", "priority": 1}
       ]
     },
     {
@@ -38,8 +18,26 @@
       "category": "地面波",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/mbc.png",
       "streams": [
-        {"url": "http://211.33.246.4:32954/cj_live/myStream.sdp/playlist.m3u8", "label": "主线路（MBC忠北 720p）", "priority": 1},
-        {"url": "http://123.254.93.7:1935/tvlive/livestream2/playlist.m3u8", "label": "备用线路（MBC江原）", "priority": 2}
+        {"url": "http://211.33.246.4:32954/cj_live/myStream.sdp/playlist.m3u8", "label": "主线路·MBC忠北720p（联通100%✓）", "priority": 1},
+        {"url": "https://stream.chmbc.co.kr/TV/myStream/playlist.m3u8", "label": "备用·MBC春川（联通100%✓）", "priority": 2}
+      ]
+    },
+    {
+      "id": "mbc_daejeon",
+      "name": "MBC 大田",
+      "category": "地面波",
+      "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/mbc.png",
+      "streams": [
+        {"url": "https://ns1.tjmbc.co.kr/live/myStream.sdp/playlist.m3u8", "label": "主线路（联通100%✓）", "priority": 1}
+      ]
+    },
+    {
+      "id": "mbc_daegu",
+      "name": "MBC 大邱",
+      "category": "地面波",
+      "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/mbc.png",
+      "streams": [
+        {"url": "https://5ee1ec6f32118.streamlock.net/live/livetv/playlist.m3u8", "label": "主线路（联通98%✓）", "priority": 1}
       ]
     },
     {
@@ -48,8 +46,7 @@
       "category": "地面波",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/sbs.png",
       "streams": [
-        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/SBSTV.m3u8", "label": "主线路（720p）", "priority": 1},
-        {"url": "https://streaming-a-802.cdn.nextologies.com/SBS_Live_HD/live/SBS_Live_HD_1500k/chunks.m3u8", "label": "备用线路", "priority": 2}
+        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/SBSTV.m3u8", "label": "主线路720p（联通98%✓）", "priority": 1}
       ]
     },
     {
@@ -58,8 +55,7 @@
       "category": "综编",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/jtbc.png",
       "streams": [
-        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/JTBC.m3u8", "label": "主线路（720p）", "priority": 1},
-        {"url": "http://channelalive.ktcdn.co.kr/chalivepc/_definst_/atv2/playlist.m3u8", "label": "备用线路", "priority": 2}
+        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/JTBC.m3u8", "label": "主线路720p（联通100%✓）", "priority": 1}
       ]
     },
     {
@@ -68,8 +64,7 @@
       "category": "综编",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/tvn.png",
       "streams": [
-        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/tvN.m3u8", "label": "主线路（720p）", "priority": 1},
-        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/tvNDrama.m3u8", "label": "备用线路（tvN Drama）", "priority": 2}
+        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/tvN.m3u8", "label": "主线路720p（联通100%✓）", "priority": 1}
       ]
     },
     {
@@ -78,8 +73,8 @@
       "category": "综编",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/tv_chosun.png",
       "streams": [
-        {"url": "http://onair.cdn.tvchosun.com/origin1/_definst_/tvchosun_s1/playlist.m3u8", "label": "主线路（官方CDN 720p）", "priority": 1, "headers": {"Referer": "http://broadcast.tvchosun.com/onair/on.cstv"}},
-        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/TVChosun.m3u8", "label": "备用线路", "priority": 2}
+        {"url": "http://onair.cdn.tvchosun.com/origin1/_definst_/tvchosun_s1/playlist.m3u8", "label": "主线路·官方CDN 720p（联通98%✓）", "priority": 1},
+        {"url": "http://onair2.cdn.tvchosun.com/origin2/_definst_/tvchosun_s3/playlist.m3u8", "label": "备用·官方CDN2（联通95%✓）", "priority": 2}
       ]
     }
   ]
