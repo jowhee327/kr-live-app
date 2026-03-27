@@ -1,6 +1,7 @@
 package com.koreatv.live.ui.mobile
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -43,6 +44,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -225,16 +227,23 @@ private fun ChannelCard(
 
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 0.95f else 1.0f,
-        animationSpec = tween(durationMillis = 150),
+        animationSpec = spring(stiffness = 800f, dampingRatio = 0.6f),
         label = "cardScale"
     )
 
     val glowBorderModifier = if (isPlaying) {
-        Modifier.border(
-            width = 2.dp,
-            brush = Brush.linearGradient(listOf(AccentPurple, AccentCyan)),
-            shape = RoundedCornerShape(16.dp)
-        )
+        Modifier
+            .shadow(
+                elevation = 8.dp,
+                shape = RoundedCornerShape(16.dp),
+                ambientColor = AccentPurple.copy(alpha = 0.6f),
+                spotColor = AccentPurple.copy(alpha = 0.6f)
+            )
+            .border(
+                width = 2.dp,
+                brush = Brush.linearGradient(listOf(AccentPurple, AccentCyan)),
+                shape = RoundedCornerShape(16.dp)
+            )
     } else {
         Modifier.border(
             width = 1.dp,
@@ -277,7 +286,7 @@ private fun ChannelCard(
                         model = channel.logo,
                         contentDescription = channel.name,
                         modifier = Modifier.size(64.dp).clip(CircleShape),
-                        contentScale = ContentScale.Crop
+                        contentScale = ContentScale.Fit
                     )
                 } else {
                     Text(

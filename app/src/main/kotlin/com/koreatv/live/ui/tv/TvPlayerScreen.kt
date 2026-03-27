@@ -1,5 +1,6 @@
 package com.koreatv.live.ui.tv
 
+import android.os.Build
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.compose.animation.AnimatedVisibility
@@ -31,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -189,11 +191,18 @@ fun TvPlayerScreen(viewModel: PlayerViewModel) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .align(Alignment.BottomCenter)
+                        .then(
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                                Modifier.blur(radius = 16.dp)
+                            } else {
+                                Modifier
+                            }
+                        )
                         .background(
                             Brush.verticalGradient(
                                 listOf(
                                     Color.Transparent,
-                                    Color.Black.copy(alpha = 0.9f)
+                                    Color.Black.copy(alpha = 0.8f)
                                 )
                             )
                         )
