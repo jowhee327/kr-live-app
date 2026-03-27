@@ -1,6 +1,7 @@
 package com.koreatv.live.ui.settings
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -21,10 +23,18 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.koreatv.live.data.local.PreferencesManager
+import com.koreatv.live.ui.theme.AccentCyan
+import com.koreatv.live.ui.theme.AccentPurple
+import com.koreatv.live.ui.theme.CardBorder
+import com.koreatv.live.ui.theme.TextSecondary
+import com.koreatv.live.ui.theme.TextTertiary
 
 @Composable
 fun SettingsScreen(onBack: () -> Unit) {
@@ -36,23 +46,24 @@ fun SettingsScreen(onBack: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .background(Color.Black)
             .statusBarsPadding()
             .padding(24.dp)
     ) {
         Text(
             text = "设置",
-            style = MaterialTheme.typography.headlineMedium,
+            fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onBackground
+            color = Color.White
         )
 
         Spacer(modifier = Modifier.height(32.dp))
 
         Text(
             text = "频道源 URL",
-            style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.onBackground
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Medium,
+            color = TextSecondary
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -67,15 +78,18 @@ fun SettingsScreen(onBack: () -> Unit) {
             singleLine = true,
             shape = RoundedCornerShape(12.dp),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = MaterialTheme.colorScheme.primary,
-                unfocusedBorderColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                focusedTextColor = MaterialTheme.colorScheme.onSurface,
-                unfocusedTextColor = MaterialTheme.colorScheme.onSurface
+                focusedBorderColor = AccentPurple,
+                unfocusedBorderColor = CardBorder,
+                focusedTextColor = Color.White,
+                unfocusedTextColor = Color.White,
+                cursorColor = AccentCyan,
+                focusedContainerColor = Color(0xFF1A1A1A),
+                unfocusedContainerColor = Color(0xFF1A1A1A)
             ),
             placeholder = {
                 Text(
                     "输入频道源 JSON URL",
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = TextTertiary
                 )
             }
         )
@@ -88,9 +102,16 @@ fun SettingsScreen(onBack: () -> Unit) {
                 saved = true
             },
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(12.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = AccentPurple,
+                contentColor = Color.White
+            )
         ) {
-            Text(if (saved) "已保存" else "保存")
+            Text(
+                if (saved) "已保存" else "保存",
+                fontWeight = FontWeight.Medium
+            )
         }
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -101,8 +122,13 @@ fun SettingsScreen(onBack: () -> Unit) {
                 prefs.channelSourceUrl = url
                 saved = true
             },
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(1.dp, CardBorder, RoundedCornerShape(12.dp)),
+            shape = RoundedCornerShape(12.dp),
+            colors = ButtonDefaults.outlinedButtonColors(
+                contentColor = TextSecondary
+            )
         ) {
             Text("恢复默认")
         }
@@ -111,8 +137,13 @@ fun SettingsScreen(onBack: () -> Unit) {
 
         OutlinedButton(
             onClick = onBack,
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(1.dp, CardBorder, RoundedCornerShape(12.dp)),
+            shape = RoundedCornerShape(12.dp),
+            colors = ButtonDefaults.outlinedButtonColors(
+                contentColor = TextSecondary
+            )
         ) {
             Text("返回")
         }

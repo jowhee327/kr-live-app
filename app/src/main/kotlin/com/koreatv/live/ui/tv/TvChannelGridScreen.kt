@@ -1,5 +1,8 @@
 package com.koreatv.live.ui.tv
 
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.focusable
@@ -25,7 +28,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,7 +39,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
@@ -53,6 +58,12 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.koreatv.live.data.model.Channel
 import com.koreatv.live.ui.player.PlayerViewModel
+import com.koreatv.live.ui.theme.AccentCyan
+import com.koreatv.live.ui.theme.AccentPurple
+import com.koreatv.live.ui.theme.CardBorder
+import com.koreatv.live.ui.theme.FavoriteGold
+import com.koreatv.live.ui.theme.TextSecondary
+import com.koreatv.live.ui.theme.TextTertiary
 
 @Composable
 fun TvChannelGridScreen(
@@ -67,93 +78,114 @@ fun TvChannelGridScreen(
 
     val channels = viewModel.filteredChannels()
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(24.dp)
-            .onKeyEvent { event ->
-                if (event.type == KeyEventType.KeyDown && event.key == Key.Menu) {
-                    onOpenSettings()
-                    true
-                } else false
-            }
     ) {
-        // Title bar
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(24.dp)
+                .onKeyEvent { event ->
+                    if (event.type == KeyEventType.KeyDown && event.key == Key.Menu) {
+                        onOpenSettings()
+                        true
+                    } else false
+                }
         ) {
-            Text(
-                text = "韩流直播",
-                style = MaterialTheme.typography.headlineLarge,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onBackground
-            )
-            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                TvFocusableButton(
-                    text = if (showFavoritesOnly) "★ 收藏" else "☆ 收藏",
-                    onClick = { viewModel.toggleFavoritesFilter() }
-                )
-                TvFocusableButton(
-                    text = "⚙ 设置",
-                    onClick = onOpenSettings
-                )
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Category row
-        if (categories.isNotEmpty()) {
-            LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            // Title bar
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                item {
-                    TvFocusableChip(
-                        text = "全部",
-                        selected = selectedCategory == null,
-                        onClick = { viewModel.selectCategory(null) }
+                Text(
+                    text = "韩流直播",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+                Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                    TvFocusableButton(
+                        text = if (showFavoritesOnly) "★ 收藏" else "☆ 收藏",
+                        onClick = { viewModel.toggleFavoritesFilter() }
                     )
-                }
-                items(categories) { category ->
-                    TvFocusableChip(
-                        text = category,
-                        selected = selectedCategory == category,
-                        onClick = { viewModel.selectCategory(category) }
+                    TvFocusableButton(
+                        text = "⚙ 设置",
+                        onClick = onOpenSettings
                     )
                 }
             }
+
             Spacer(modifier = Modifier.height(16.dp))
-        }
 
-        // Channel grid
-        if (isLoading) {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator()
+            // Category row
+            if (categories.isNotEmpty()) {
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    item {
+                        TvFocusableChip(
+                            text = "全部",
+                            selected = selectedCategory == null,
+                            onClick = { viewModel.selectCategory(null) }
+                        )
+                    }
+                    items(categories) { category ->
+                        TvFocusableChip(
+                            text = category,
+                            selected = selectedCategory == category,
+                            onClick = { viewModel.selectCategory(category) }
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(16.dp))
             }
-        } else if (channels.isEmpty()) {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text("暂无频道", color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f), fontSize = 24.sp)
-            }
-        } else {
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(minSize = 200.dp),
-                contentPadding = PaddingValues(4.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                items(channels, key = { it.id }) { channel ->
-                    TvChannelCard(
-                        channel = channel,
-                        isFavorite = favorites.contains(channel.id),
-                        onSelect = { viewModel.playChannel(channel) },
-                        onToggleFavorite = { viewModel.toggleFavorite(channel.id) }
-                    )
+
+            // Channel grid
+            if (isLoading) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator(color = AccentPurple)
+                }
+            } else if (channels.isEmpty()) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text("暂无频道", color = TextTertiary, fontSize = 24.sp)
+                }
+            } else {
+                LazyVerticalGrid(
+                    columns = GridCells.Adaptive(minSize = 200.dp),
+                    contentPadding = PaddingValues(4.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    items(channels, key = { it.id }) { channel ->
+                        TvChannelCard(
+                            channel = channel,
+                            isFavorite = favorites.contains(channel.id),
+                            onSelect = { viewModel.playChannel(channel) },
+                            onToggleFavorite = { viewModel.toggleFavorite(channel.id) }
+                        )
+                    }
                 }
             }
         }
+
+        // Top scroll gradient mask
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(80.dp)
+                .align(Alignment.TopCenter)
+                .background(
+                    Brush.verticalGradient(
+                        listOf(
+                            Color.Black.copy(alpha = 0.6f),
+                            Color.Transparent
+                        )
+                    )
+                )
+        )
     }
 }
 
@@ -166,10 +198,23 @@ private fun TvChannelCard(
 ) {
     var isFocused by remember { mutableStateOf(false) }
 
+    val cardScale by animateFloatAsState(
+        targetValue = if (isFocused) 1.1f else 1.0f,
+        animationSpec = tween(durationMillis = 250),
+        label = "tvCardScale"
+    )
+
+    val cardElevation by animateDpAsState(
+        targetValue = if (isFocused) 16.dp else 2.dp,
+        animationSpec = tween(durationMillis = 250),
+        label = "tvCardElevation"
+    )
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(160.dp)
+            .scale(cardScale)
             .onFocusChanged { isFocused = it.isFocused }
             .focusable()
             .onKeyEvent { event ->
@@ -188,18 +233,22 @@ private fun TvChannelCard(
                 } else false
             }
             .then(
-                if (isFocused) Modifier.border(3.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp))
-                else Modifier
+                if (isFocused) Modifier.border(
+                    2.dp,
+                    Brush.linearGradient(listOf(AccentPurple, AccentCyan)),
+                    RoundedCornerShape(16.dp)
+                )
+                else Modifier.border(1.dp, CardBorder, RoundedCornerShape(16.dp))
             ),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = if (isFocused)
-                MaterialTheme.colorScheme.primaryContainer
+                Color(0xFF252525)
             else
-                MaterialTheme.colorScheme.surfaceVariant
+                Color(0xFF1A1A1A)
         ),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = if (isFocused) 8.dp else 2.dp
+            defaultElevation = cardElevation
         )
     ) {
         Column(
@@ -213,7 +262,7 @@ private fun TvChannelCard(
                 modifier = Modifier
                     .size(56.dp)
                     .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.surface),
+                    .background(Color(0xFF2A2A2A)),
                 contentAlignment = Alignment.Center
             ) {
                 if (channel.logo.isNotEmpty()) {
@@ -228,16 +277,16 @@ private fun TvChannelCard(
                         text = channel.name.take(2),
                         fontWeight = FontWeight.Bold,
                         fontSize = 16.sp,
-                        color = MaterialTheme.colorScheme.primary
+                        color = AccentCyan
                     )
                 }
             }
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = channel.name,
-                style = MaterialTheme.typography.titleMedium,
+                fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
-                color = MaterialTheme.colorScheme.onSurface,
+                color = Color.White,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center,
@@ -250,12 +299,12 @@ private fun TvChannelCard(
             ) {
                 Text(
                     text = channel.category,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    fontSize = 12.sp,
+                    color = TextTertiary
                 )
                 if (isFavorite) {
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text("★", fontSize = 14.sp, color = Color(0xFFFFD700))
+                    Text("★", fontSize = 14.sp, color = FavoriteGold)
                 }
             }
         }
@@ -265,12 +314,24 @@ private fun TvChannelCard(
 @Composable
 private fun TvFocusableButton(text: String, onClick: () -> Unit) {
     var isFocused by remember { mutableStateOf(false) }
+
+    val buttonScale by animateFloatAsState(
+        targetValue = if (isFocused) 1.05f else 1.0f,
+        animationSpec = tween(durationMillis = 200),
+        label = "tvBtnScale"
+    )
+
     Box(
         modifier = Modifier
+            .scale(buttonScale)
             .clip(RoundedCornerShape(8.dp))
             .background(
-                if (isFocused) MaterialTheme.colorScheme.primary
-                else MaterialTheme.colorScheme.surfaceVariant
+                if (isFocused) Brush.horizontalGradient(listOf(AccentPurple, AccentCyan))
+                else Brush.horizontalGradient(listOf(Color(0xFF1A1A1A), Color(0xFF1A1A1A)))
+            )
+            .then(
+                if (!isFocused) Modifier.border(1.dp, CardBorder, RoundedCornerShape(8.dp))
+                else Modifier
             )
             .onFocusChanged { isFocused = it.isFocused }
             .focusable()
@@ -285,8 +346,7 @@ private fun TvFocusableButton(text: String, onClick: () -> Unit) {
     ) {
         Text(
             text = text,
-            color = if (isFocused) MaterialTheme.colorScheme.onPrimary
-            else MaterialTheme.colorScheme.onSurfaceVariant,
+            color = if (isFocused) Color.White else TextSecondary,
             fontWeight = FontWeight.Medium
         )
     }
@@ -295,19 +355,34 @@ private fun TvFocusableButton(text: String, onClick: () -> Unit) {
 @Composable
 private fun TvFocusableChip(text: String, selected: Boolean, onClick: () -> Unit) {
     var isFocused by remember { mutableStateOf(false) }
+
+    val chipScale by animateFloatAsState(
+        targetValue = if (isFocused) 1.05f else 1.0f,
+        animationSpec = tween(durationMillis = 200),
+        label = "tvChipScale"
+    )
+
     Box(
         modifier = Modifier
+            .scale(chipScale)
             .clip(RoundedCornerShape(20.dp))
             .background(
                 when {
-                    isFocused -> MaterialTheme.colorScheme.primary
-                    selected -> MaterialTheme.colorScheme.primaryContainer
-                    else -> MaterialTheme.colorScheme.surfaceVariant
+                    isFocused -> Brush.horizontalGradient(listOf(AccentPurple, AccentCyan))
+                    selected -> Brush.horizontalGradient(
+                        listOf(AccentPurple.copy(alpha = 0.3f), AccentCyan.copy(alpha = 0.3f))
+                    )
+                    else -> Brush.horizontalGradient(
+                        listOf(Color(0xFF1A1A1A), Color(0xFF1A1A1A))
+                    )
                 }
             )
             .then(
-                if (isFocused) Modifier.border(2.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(20.dp))
-                else Modifier
+                when {
+                    isFocused -> Modifier
+                    selected -> Modifier.border(1.dp, AccentPurple.copy(alpha = 0.5f), RoundedCornerShape(20.dp))
+                    else -> Modifier.border(1.dp, CardBorder, RoundedCornerShape(20.dp))
+                }
             )
             .onFocusChanged { isFocused = it.isFocused }
             .focusable()
@@ -323,9 +398,9 @@ private fun TvFocusableChip(text: String, selected: Boolean, onClick: () -> Unit
         Text(
             text = text,
             color = when {
-                isFocused -> MaterialTheme.colorScheme.onPrimary
-                selected -> MaterialTheme.colorScheme.onPrimaryContainer
-                else -> MaterialTheme.colorScheme.onSurfaceVariant
+                isFocused -> Color.White
+                selected -> Color.White
+                else -> TextSecondary
             },
             fontWeight = if (selected || isFocused) FontWeight.Bold else FontWeight.Normal
         )

@@ -3,6 +3,7 @@ package com.koreatv.live.ui.tv
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -32,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
@@ -44,6 +47,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.media3.ui.PlayerView
 import com.koreatv.live.ui.player.PlayerViewModel
+import com.koreatv.live.ui.theme.AccentCyan
+import com.koreatv.live.ui.theme.AccentPurple
+import com.koreatv.live.ui.theme.TextSecondary
+import com.koreatv.live.ui.theme.TextTertiary
 import kotlinx.coroutines.delay
 
 @Composable
@@ -126,33 +133,39 @@ fun TvPlayerScreen(viewModel: PlayerViewModel) {
         // Controls overlay
         AnimatedVisibility(
             visible = showControls,
-            enter = fadeIn(),
-            exit = fadeOut()
+            enter = fadeIn(animationSpec = tween(300)),
+            exit = fadeOut(animationSpec = tween(300))
         ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color.Black.copy(alpha = 0.5f))
-            ) {
-                // Top - channel info
-                Column(
+            Box(modifier = Modifier.fillMaxSize()) {
+                // Top gradient + channel info
+                Box(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .align(Alignment.TopCenter)
+                        .background(
+                            Brush.verticalGradient(
+                                listOf(
+                                    Color.Black.copy(alpha = 0.85f),
+                                    Color.Transparent
+                                )
+                            )
+                        )
                         .padding(32.dp)
-                        .align(Alignment.TopStart)
                 ) {
-                    Text(
-                        text = currentChannel?.name ?: "",
-                        style = MaterialTheme.typography.headlineMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = currentChannel?.category ?: "",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = Color.White.copy(alpha = 0.7f)
-                    )
+                    Column {
+                        Text(
+                            text = currentChannel?.name ?: "",
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = currentChannel?.category ?: "",
+                            fontSize = 14.sp,
+                            color = TextSecondary
+                        )
+                    }
                 }
 
                 // Center - playback state
@@ -160,8 +173,8 @@ fun TvPlayerScreen(viewModel: PlayerViewModel) {
                     modifier = Modifier
                         .align(Alignment.Center)
                         .size(80.dp)
-                        .clip(RoundedCornerShape(40.dp))
-                        .background(Color.White.copy(alpha = 0.2f)),
+                        .clip(CircleShape)
+                        .background(Color.White.copy(alpha = 0.15f)),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
@@ -171,18 +184,44 @@ fun TvPlayerScreen(viewModel: PlayerViewModel) {
                     )
                 }
 
-                // Bottom - hints
-                Row(
+                // Bottom gradient with hints and gradient progress bar
+                Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .align(Alignment.BottomCenter)
-                        .padding(32.dp),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                        .background(
+                            Brush.verticalGradient(
+                                listOf(
+                                    Color.Transparent,
+                                    Color.Black.copy(alpha = 0.9f)
+                                )
+                            )
+                        )
                 ) {
-                    HintLabel("◀ 上一个")
-                    HintLabel("OK 暂停/播放")
-                    HintLabel("▶ 下一个")
-                    HintLabel("返回 退出")
+                    // Gradient progress bar
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(3.dp)
+                            .align(Alignment.TopCenter)
+                            .background(
+                                Brush.horizontalGradient(
+                                    listOf(AccentPurple, AccentCyan)
+                                )
+                            )
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(32.dp),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        HintLabel("◀ 上一个")
+                        HintLabel("OK 暂停/播放")
+                        HintLabel("▶ 下一个")
+                        HintLabel("返回 退出")
+                    }
                 }
             }
         }
@@ -193,7 +232,7 @@ fun TvPlayerScreen(viewModel: PlayerViewModel) {
 private fun HintLabel(text: String) {
     Text(
         text = text,
-        style = MaterialTheme.typography.bodyMedium,
-        color = Color.White.copy(alpha = 0.6f)
+        fontSize = 14.sp,
+        color = TextTertiary
     )
 }
