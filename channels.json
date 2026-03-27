@@ -1,7 +1,7 @@
 {
-  "version": 4,
+  "version": 5,
   "updated": "2026-03-27",
-  "tested_from": "中国联通全国节点 via itdog.cn",
+  "tested_from": "中国联通全国44节点 via itdog.cn",
   "channels": [
     {
       "id": "kbs1",
@@ -9,7 +9,28 @@
       "category": "地面波",
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs1.png",
       "streams": [
-        {"url": "http://mytv.dothome.co.kr/ch/public/1.php", "label": "主线路（联通98%✓）", "priority": 1}
+        {"url": "http://mytv.dothome.co.kr/ch/public/1.php", "label": "主线路（联通98%✓）", "priority": 1},
+        {"url": "https://allanf181.github.io/adaptive-streams/streams/kr/SBSTV.m3u8", "label": "备用·SBS代播", "priority": 2}
+      ]
+    },
+    {
+      "id": "kbs2",
+      "name": "KBS2",
+      "category": "地面波",
+      "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs2.png",
+      "streams": [
+        {"url": "http://mytv.dothome.co.kr/ch/public/3.php", "label": "主线路（dothome代理）", "priority": 1},
+        {"url": "http://mytv.dothome.co.kr/ch/public/1.php", "label": "备用·KBS1", "priority": 2}
+      ]
+    },
+    {
+      "id": "kbs_world",
+      "name": "KBS World",
+      "category": "地面波",
+      "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs_world.png",
+      "streams": [
+        {"url": "http://worldlive.kbs.co.kr/worldtvlive_h.m3u8", "label": "主线路（官方·限韩国）", "priority": 1},
+        {"url": "http://mytv.dothome.co.kr/ch/public/1.php", "label": "备用·KBS1", "priority": 2}
       ]
     },
     {
@@ -19,25 +40,7 @@
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/mbc.png",
       "streams": [
         {"url": "http://211.33.246.4:32954/cj_live/myStream.sdp/playlist.m3u8", "label": "主线路·MBC忠北720p（联通100%✓）", "priority": 1},
-        {"url": "https://stream.chmbc.co.kr/TV/myStream/playlist.m3u8", "label": "备用·MBC春川（联通100%✓）", "priority": 2}
-      ]
-    },
-    {
-      "id": "mbc_daejeon",
-      "name": "MBC 大田",
-      "category": "地面波",
-      "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/mbc.png",
-      "streams": [
-        {"url": "https://ns1.tjmbc.co.kr/live/myStream.sdp/playlist.m3u8", "label": "主线路（联通100%✓）", "priority": 1}
-      ]
-    },
-    {
-      "id": "mbc_daegu",
-      "name": "MBC 大邱",
-      "category": "地面波",
-      "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/mbc.png",
-      "streams": [
-        {"url": "https://5ee1ec6f32118.streamlock.net/live/livetv/playlist.m3u8", "label": "主线路（联通98%✓）", "priority": 1}
+        {"url": "https://ns1.tjmbc.co.kr/live/myStream.sdp/playlist.m3u8", "label": "备用·MBC大田（联通100%✓）", "priority": 2}
       ]
     },
     {
