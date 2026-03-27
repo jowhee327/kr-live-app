@@ -61,111 +61,83 @@ class ChannelRepository(private val prefs: PreferencesManager) {
     companion object {
         fun defaultChannels(): List<Channel> = listOf(
             Channel(
-                id = "arirang_tv",
-                name = "Arirang TV",
-                category = "综合",
-                logo = "https://i.imgur.com/Asu5pE9.png",
+                id = "kbs1",
+                name = "KBS1",
+                category = "地面波",
+                logo = "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs1.png",
                 streams = listOf(
-                    Stream("http://amdlive-ch01.ctnd.com.edgesuite.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8", "默认", 1)
+                    Stream("http://mytv.dothome.co.kr/ch/public/1.php", "主线路", 1),
+                    Stream("http://ye23.vip/z7z8/2021/kbs2020.php?id=1", "备用线路", 2)
                 )
             ),
             Channel(
-                id = "arirang_radio",
-                name = "Arirang Radio",
-                category = "综合",
-                logo = "https://i.imgur.com/Asu5pE9.png",
+                id = "kbs2",
+                name = "KBS2",
+                category = "地面波",
+                logo = "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs2.png",
                 streams = listOf(
-                    Stream("http://amdlive-ch01.ctnd.com.edgesuite.net/arirang_3ch/smil:arirang_3ch.smil/playlist.m3u8", "默认", 1)
+                    Stream("http://ye23.vip/z7z8/2021/kbs2020.php?id=2", "主线路", 1),
+                    Stream("http://koreatv.dothome.co.kr/kbs2.php", "备用线路", 2)
                 )
             ),
             Channel(
                 id = "kbs_world",
                 name = "KBS World",
-                category = "综合",
-                logo = "",
+                category = "地面波",
+                logo = "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs_world.png",
                 streams = listOf(
-                    Stream("http://worldlive.kbs.co.kr/worldtvlive_h.m3u8", "默认", 1)
+                    Stream("http://ye23.vip/z7z8/2021/kbs2020.php?id=3", "主线路", 1),
+                    Stream("http://worldlive.kbs.co.kr/worldtvlive_h.m3u8", "备用线路", 2)
                 )
             ),
             Channel(
-                id = "ktv",
-                name = "Korea TV (KTV)",
-                category = "新闻",
-                logo = "",
+                id = "mbc",
+                name = "MBC",
+                category = "地面波",
+                logo = "https://d1g8wyuo4sonlw.cloudfront.net/logos/mbc.png",
                 streams = listOf(
-                    Stream("https://hlive.ktv.go.kr/live/klive_h.stream/playlist.m3u8", "默认", 1)
+                    Stream("http://211.33.246.4:32954/cj_live/myStream.sdp/playlist.m3u8", "主线路", 1),
+                    Stream("http://123.254.93.7:1935/tvlive/livestream2/playlist.m3u8", "备用线路", 2)
                 )
             ),
             Channel(
-                id = "ebs1",
-                name = "EBS 1",
-                category = "教育",
-                logo = "",
+                id = "sbs",
+                name = "SBS",
+                category = "地面波",
+                logo = "https://d1g8wyuo4sonlw.cloudfront.net/logos/sbs.png",
                 streams = listOf(
-                    Stream("https://ebsonair.ebs.co.kr/ebs1familypc/familypc1m/playlist.m3u8", "默认", 1)
+                    Stream("https://allanf181.github.io/adaptive-streams/streams/kr/SBSTV.m3u8", "主线路", 1),
+                    Stream("https://streaming-a-802.cdn.nextologies.com/SBS_Live_HD/live/SBS_Live_HD_1500k/chunks.m3u8", "备用线路", 2)
                 )
             ),
             Channel(
-                id = "ebs2",
-                name = "EBS 2",
-                category = "教育",
-                logo = "",
+                id = "jtbc",
+                name = "JTBC",
+                category = "综编",
+                logo = "https://d1g8wyuo4sonlw.cloudfront.net/logos/jtbc.png",
                 streams = listOf(
-                    Stream("https://ebsonair.ebs.co.kr/ebs2familypc/familypc1m/playlist.m3u8", "默认", 1)
+                    Stream("https://allanf181.github.io/adaptive-streams/streams/kr/JTBC.m3u8", "主线路", 1),
+                    Stream("http://channelalive.ktcdn.co.kr/chalivepc/_definst_/atv2/playlist.m3u8", "备用线路", 2)
                 )
             ),
             Channel(
-                id = "mbc_chuncheon",
-                name = "MBC 春川",
-                category = "综合",
-                logo = "",
+                id = "tvn",
+                name = "tvN",
+                category = "综编",
+                logo = "https://d1g8wyuo4sonlw.cloudfront.net/logos/tvn.png",
                 streams = listOf(
-                    Stream("https://stream.chmbc.co.kr/TV/myStream/playlist.m3u8", "默认", 1)
+                    Stream("https://allanf181.github.io/adaptive-streams/streams/kr/tvN.m3u8", "主线路", 1),
+                    Stream("https://allanf181.github.io/adaptive-streams/streams/kr/tvNDrama.m3u8", "备用线路", 2)
                 )
             ),
             Channel(
-                id = "mbc_daejeon",
-                name = "MBC 大田",
-                category = "综合",
-                logo = "",
+                id = "tv_chosun",
+                name = "TV Chosun",
+                category = "综编",
+                logo = "https://d1g8wyuo4sonlw.cloudfront.net/logos/tv_chosun.png",
                 streams = listOf(
-                    Stream("https://ns1.tjmbc.co.kr/live/myStream.sdp/playlist.m3u8", "默认", 1)
-                )
-            ),
-            Channel(
-                id = "abn_tv",
-                name = "ABN TV",
-                category = "综合",
-                logo = "",
-                streams = listOf(
-                    Stream("https://vod2.abn.co.kr/IPHONE/abn.m3u8", "默认", 1)
-                )
-            ),
-            Channel(
-                id = "bbs",
-                name = "BBS 佛教放送",
-                category = "宗教",
-                logo = "",
-                streams = listOf(
-                    Stream("http://bbstv.clouducs.com:1935/bbstv-live/livestream/playlist.m3u8", "默认", 1)
-                )
-            ),
-            Channel(
-                id = "gugak",
-                name = "国乐放送",
-                category = "音乐",
-                logo = "",
-                streams = listOf(
-                    Stream("https://mgugaklive.nowcdn.co.kr/gugakvideo/gugakvideo.stream/playlist.m3u8", "默认", 1)
-                )
-            ),
-            Channel(
-                id = "jobplus",
-                name = "Job Plus TV",
-                category = "综合",
-                logo = "",
-                streams = listOf(
-                    Stream("https://live.jobplustv.or.kr/live/wowtvlive1.sdp/playlist.m3u8", "默认", 1)
+                    Stream("http://onair.cdn.tvchosun.com/origin1/_definst_/tvchosun_s1/playlist.m3u8", "主线路", 1),
+                    Stream("https://allanf181.github.io/adaptive-streams/streams/kr/TVChosun.m3u8", "备用线路", 2)
                 )
             )
         )
