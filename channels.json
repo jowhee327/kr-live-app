@@ -1,7 +1,7 @@
 {
-  "version": 6,
-  "updated": "2026-05-29",
-  "tested_from": "中国联通(itdog WS临时403,基础HTTP校验) - KBS dothome代理失效,切换vtvprime CDN",
+  "version": 7,
+  "updated": "2026-06-04",
+  "tested_from": "中国联通(itdog WS 参数失效,改用基础HTTP校验) - KBS vtvprime CDN 403失效,KBS World切换kortv akamai CDN(已验证m3u8),KBS1/2主线待修复+kortv备线",
   "channels": [
     {
       "id": "kbs1",
@@ -11,12 +11,12 @@
       "streams": [
         {
           "url": "https://liveh12.vtvprime.vn/hls/KBS/01.m3u8",
-          "label": "主线路·KBS1官方(vtvprime CDN)",
+          "label": "主线路·KBS1官方(vtvprime 待修复)",
           "priority": 1
         },
         {
-          "url": "https://liveh12.vtvprime.vn/hls/KBS/03.m3u8",
-          "label": "备用·KBS World",
+          "url": "https://wms4-kortv.akamaized.net/a_live/63719963/smil:20ch011.smil/playlist.m3u8",
+          "label": "备用·KBS World(kortv CDN)",
           "priority": 2
         }
       ]
@@ -29,12 +29,12 @@
       "streams": [
         {
           "url": "https://liveh12.vtvprime.vn/hls/KBS/02.m3u8",
-          "label": "主线路·KBS2官方(vtvprime CDN)",
+          "label": "主线路·KBS2官方(vtvprime 待修复)",
           "priority": 1
         },
         {
-          "url": "https://liveh12.vtvprime.vn/hls/KBS/01.m3u8",
-          "label": "备用·KBS1",
+          "url": "https://wms4-kortv.akamaized.net/a_live/63719963/smil:20ch011.smil/playlist.m3u8",
+          "label": "备用·KBS World(kortv CDN)",
           "priority": 2
         }
       ]
@@ -46,13 +46,13 @@
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs_world.png",
       "streams": [
         {
-          "url": "https://liveh12.vtvprime.vn/hls/KBS/03.m3u8",
-          "label": "主线路·KBS World官方(vtvprime CDN)",
+          "url": "https://wms4-kortv.akamaized.net/a_live/63719963/smil:20ch011.smil/playlist.m3u8",
+          "label": "主线路·KBS World(kortv CDN)",
           "priority": 1
         },
         {
-          "url": "https://liveh12.vtvprime.vn/hls/KBS/01.m3u8",
-          "label": "备用·KBS1",
+          "url": "https://liveh12.vtvprime.vn/hls/KBS/03.m3u8",
+          "label": "备用·vtvprime(待修复)",
           "priority": 2
         }
       ]
