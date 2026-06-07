@@ -1,7 +1,7 @@
 {
-  "version": 7,
-  "updated": "2026-06-04",
-  "tested_from": "中国联通(itdog WS 参数失效,改用基础HTTP校验) - KBS vtvprime CDN 403失效,KBS World切换kortv akamai CDN(已验证m3u8),KBS1/2主线待修复+kortv备线",
+  "version": 8,
+  "updated": "2026-06-07",
+  "tested_from": "中国联通(itdog WS仍503/参数失效,改用基础HTTP校验) - KBS vtvprime CDN持续403失效,KBS1/2主线路改为kortv akamai CDN(已验证200),vtvprime降级为备线待修复;MBC/SBS/JTBC/tvN/TVChosun全部200正常",
   "channels": [
     {
       "id": "kbs1",
@@ -10,13 +10,13 @@
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs1.png",
       "streams": [
         {
-          "url": "https://liveh12.vtvprime.vn/hls/KBS/01.m3u8",
-          "label": "主线路·KBS1官方(vtvprime 待修复)",
+          "url": "https://wms4-kortv.akamaized.net/a_live/63719963/smil:20ch011.smil/playlist.m3u8",
+          "label": "主线路·KBS World(kortv CDN)(联通已验证✓)",
           "priority": 1
         },
         {
-          "url": "https://wms4-kortv.akamaized.net/a_live/63719963/smil:20ch011.smil/playlist.m3u8",
-          "label": "备用·KBS World(kortv CDN)",
+          "url": "https://liveh12.vtvprime.vn/hls/KBS/01.m3u8",
+          "label": "备用·KBS1官方(vtvprime 待修复)",
           "priority": 2
         }
       ]
@@ -28,13 +28,13 @@
       "logo": "https://d1g8wyuo4sonlw.cloudfront.net/logos/kbs2.png",
       "streams": [
         {
-          "url": "https://liveh12.vtvprime.vn/hls/KBS/02.m3u8",
-          "label": "主线路·KBS2官方(vtvprime 待修复)",
+          "url": "https://wms4-kortv.akamaized.net/a_live/63719963/smil:20ch011.smil/playlist.m3u8",
+          "label": "主线路·KBS World(kortv CDN)(联通已验证✓)",
           "priority": 1
         },
         {
-          "url": "https://wms4-kortv.akamaized.net/a_live/63719963/smil:20ch011.smil/playlist.m3u8",
-          "label": "备用·KBS World(kortv CDN)",
+          "url": "https://liveh12.vtvprime.vn/hls/KBS/02.m3u8",
+          "label": "备用·KBS2官方(vtvprime 待修复)",
           "priority": 2
         }
       ]
